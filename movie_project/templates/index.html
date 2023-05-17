@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+   .card {
+      margin-bottom: 20px;
+   }
+
+   .card-img-top {
+      object-fit: cover;
+      height: 200px;
+   }
+
+   .card-title {
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+
+   .container {
+      margin-top: 20px; /* Add top margin for spacing */
+   }
+</style>
+
+<div class="container">
+   <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for movie in movie_list %}
+      <div class="col">
+         <div class="card">
+            <img src="{{ movie.img.url }}" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+               <h5 class="card-title">{{ movie.name }}</h5>
+               <p class="card-text">{{ movie.des }}</p>
+               <a href="{% url 'movie_app:detail' movie.id %}" class="btn btn-primary btn-yellow">View Details</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   <br>
+</div>
+
+{% endblock %}
